@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>요즘IT 뉴스레터 구독 🫧</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #ECEEDF;
+      margin: 0;
+      padding: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .subscribe-box {
+      background-color: #ffffff;
+      border: 1px solid #CFAB8D;
+      border-radius: 12px;
+      padding: 40px;
+      max-width: 400px;
+      width: 100%;
+      margin-top: 5%;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .subscribe-box h2 {
+      margin-top: 0;
+      font-size: 20px;
+      font-weight: bold;
+      color: #665445;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+
+    .subscribe-box p {
+      font-size: 14px;
+      color: #665445;
+      margin-bottom: 24px;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    label {
+      font-size: 14px;
+      display: block;
+      margin-bottom: 6px;
+      color: #665445;
+    }
+
+    input[type="text"],
+    input[type="email"] {
+      width: 90%;
+      padding: 10px 12px;
+      border: 1px solid #D9C4B0;
+      border-radius: 8px;
+      margin-bottom: 18px;
+      font-size: 14px;
+      background-color: #FAFAFA;
+    }
+
+    input::placeholder {
+      color: #aaa;
+    }
+
+    .btn-submit {
+      background-color: #BBDCE5;
+      color: #665445;
+      border: none;
+      width: 97%;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-submit:hover {
+      background-color: #a9ceda;
+    }
+
+    .privacy-text {
+      margin-top: 16px;
+      font-size: 12px;
+      color: #666;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="subscribe-box">
+    <h2>📰 뉴스레터 구독 📰</h2>
+    <p>‘요즘IT’의 기사들을 뉴스레터로 보내드릴게요! 📩</p>
+    <form id="subscribe-form">
+      <label for="name">이름 *</label>
+      <input type="text" id="name" name="name" placeholder="your name" required>
+
+      <label for="email">이메일 *</label>
+      <input type="email" id="email" name="email" placeholder="you@example.com" required>
+
+
+      <button type="submit" class="btn-submit">구독 신청</button>
+    </form>
+    <p class="privacy-text">개인정보는 구독 목적 외로 사용하지 않습니다.</p>
+  </div>
+<script>
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbyMhcJvGFNqemV73dImLnrm4xN5SN_oBrDHzMwGshrsGTrkV01ILoPjGom2ZX8IK76iDA/exec';
+  const form = document.getElementById("subscribe-form");
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+
+    fetch(scriptURL, { 
+      method: 'POST', 
+      body: new FormData(form)
+    })
+      .then(response => {
+        if (response.ok) {
+          alert('✅ 구독 신청이 완료되었습니다!');
+          form.reset();
+        } else {
+          alert('❌ 서버 오류가 발생했습니다.');
+        }
+      })
+      .catch(error => alert('❌ 네트워크 오류: ' + error.message));
+  });
+</script>
+
+
+</body>
+</html>
